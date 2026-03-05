@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Install system updates for centos systems
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Install system NTP
+      yum:
+        name: ntp
+
+    - name: Create Limits file
+      copy:
+        dest: /etc/security/limits.d/30-nofile.conf
+        content: |
+            *   soft    nofile      16000
+            *   hard    nofile      30000
