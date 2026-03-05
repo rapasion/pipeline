@@ -19,3 +19,12 @@
         content: |
             *   soft    nofile      16000
             *   hard    nofile      30000
+
+    - name: Render HTML report
+      template:
+        src: "{{ report_template }}"
+        dest: "{{ report_dir }}/{{ report_file }}"
+        mode: '0644'
+      run_once: true
+
+
